@@ -1,13 +1,16 @@
 var theMap;
+
 var map = {
     center : null,
     visibles : [],
     visibleKey : 0,
+    
     start : {
         marker: null,
         pos: null,
         address: null
     },
+    
     end : {
         marker : null,
         pos: null,
@@ -34,17 +37,12 @@ var map = {
         //theMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
     },
     
-    addMarker : function(array){
+    add : function(array){
         //adds Marker to Map, stores reference in visibles so that they can be removed
-        var newMarker;
         for (var i = 0; i < array.length; i++){
-            newMarker = new google.maps.Marker({
-                map: theMap,
-                position: new google.maps.LatLng(array[i].lat, array[i].lng),
-            });
             this.visibles.push({
                 string: JSON.stringify(array[i]),
-                object: newMarker,
+                marker: newMarker,
                 key: this.visibleKey
             });
         }
@@ -54,7 +52,7 @@ var map = {
     remove : function(){
         var index = this.visibles[0].key;
         while(this.visibles[0].key === index){
-            this.visibles[0].object.setMap(null);
+            this.visibles[0].marker.setMap(null);
             this.visibles.shift();
         }
     },
@@ -64,7 +62,3 @@ var map = {
         ui.style.display = ui.style.display === "none" ? "block" : "none";
     }
 };
-
-
-
-

@@ -3,6 +3,7 @@
     <head>
         <script src="map.js"></script>
         <script src="user.js"></script>
+        <script src="stop.js"></script>
         <script src="util.js"></script>
         <script src="data.js"></script>
         <script async defer
@@ -43,12 +44,12 @@
         <div id="map-div"></div>
         <div id="directions-panel"></div>
         <div id="user-input">
-
+            <form name="input_form">
                 <table>
                     <tr> 
                         <td>
                             <input type=text name=start placeholder="start location" size=15> 
-                            <input type=button value="GO!" onClick="user.getStart()">
+                            <input type=button value="GO!" onClick="stops.something()">
                             <input type=text name=radius placeholder="radius" size=3>        
                         </td>
                     </tr>
@@ -63,11 +64,11 @@
                         <td>
                             <input type=button value="Close Places" onClick="displayClosePlacesToStart()">
                             <input type=button value="Close Busses" onClick="displayCloseBussesToStart()">
-                            <input type=button value="Close Stops" onClick="displayCloseStopsToStart()">
+                            <input type=button value="Close Stops" onClick="stops.something()">
                         </td>
                     </tr>
                 </table>
-
+            </form>
         </div>
         <div id="toggle-button"><input type="button" value="toggle" onClick="map.toggleUI()"></div>
         <div id="test-text"><input type="text"></div>

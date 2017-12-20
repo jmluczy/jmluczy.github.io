@@ -1,6 +1,20 @@
 var data = {
     static: {
         urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/static-data/",
+        urlPost: "_json.txt"
+    },
+    realtime:{
+        urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/real-time-data-sample/",
+        urlPost: ".txt"
+    }
+};
+
+
+
+/*
+var data = {
+    static: {
+        urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/static-data/",
         urlPost: "_json.txt",
         routes: null,
         shapes: null,
@@ -80,4 +94,4 @@ var data = {
     },
 };
 
-
+*/
