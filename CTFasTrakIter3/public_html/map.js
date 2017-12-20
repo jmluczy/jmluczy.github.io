@@ -1,7 +1,7 @@
 var theMap;
 
 var map = {
-    center : null,
+    center : {lat: 41.7,lng: -72.7},
     visibles : [],
     visibleKey : 0,
     
@@ -18,7 +18,6 @@ var map = {
     },
     
     init : function(){
-        this.center = new google.maps.LatLng(41.7, -72.7);
         theMap = new google.maps.Map(document.getElementById('map-div'),{
             zoom: 9,
             disableDefaultUI: true,
@@ -41,12 +40,11 @@ var map = {
         //adds Marker to Map, stores reference in visibles so that they can be removed
         for (var i = 0; i < array.length; i++){
             this.visibles.push({
-                string: JSON.stringify(array[i]),
-                marker: newMarker,
+                marker: array[i],
                 key: this.visibleKey
             });
         }
-        visibleKey++;
+        this.visibleKey++;
     },
     
     remove : function(){

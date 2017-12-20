@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <script src="map.js"></script>
-        <script src="user.js"></script>
-        <script src="stop.js"></script>
-        <script src="util.js"></script>
         <script src="data.js"></script>
+        <script src="user.js"></script>
+        <script src="util.js"></script>
+        <script src="stop.js"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_9mrVl2c6FS59KEwhm5L55R08fcuF_V0&libraries=geometry,places&callback=map.init">
         </script>
@@ -49,7 +50,7 @@
                     <tr> 
                         <td>
                             <input type=text name=start placeholder="start location" size=15> 
-                            <input type=button value="GO!" onClick="stops.something()">
+                            <input type=button value="GO!" onClick="user.getLocations()">
                             <input type=text name=radius placeholder="radius" size=3>        
                         </td>
                     </tr>
@@ -57,14 +58,14 @@
                         <td>
                             <input type=text name=end placeholder="end location" size=15>
                             <input type = button value="Trip Info" onClick="calculateAndDisplayRoute()">
-                            <input type="button" value ="Clear" onClick="remove()">
+                            <input type="button" value ="Clear" onClick="map.remove()">
                         </td>
                     </tr>	
                     <tr>
                         <td>
                             <input type=button value="Close Places" onClick="displayClosePlacesToStart()">
                             <input type=button value="Close Busses" onClick="displayCloseBussesToStart()">
-                            <input type=button value="Close Stops" onClick="stops.something()">
+                            <input type=button value="Close Stops" onClick="stops.displayCloseToStart()">
                         </td>
                     </tr>
                 </table>

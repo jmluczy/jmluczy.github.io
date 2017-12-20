@@ -25,14 +25,15 @@ var util = {
     },
     
     distance: function(pos1, pos2){
-    //pos1, pos2 MUST be LatLng objects    NO LatLng literals!
     //returns distance in miles.
+        pos1 = new google.maps.LatLng(JSON.parse(JSON.stringify(pos1)));
+        pos2 = new google.maps.LatLng(JSON.parse(JSON.stringify(pos2)));
         var dist = google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2); //in meters
         dist = dist / 1609.34; //convert to miles
         return dist;       
     },
     
     test: function(){
-        this.update("sssssssssss");
+        this.update(this.distance(map.start.pos, map.end.pos));
     }
 };

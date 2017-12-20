@@ -1,19 +1,15 @@
-
 var stops = {
     url: data.static.urlPre + "stops" + data.static.urlPost,
     icon: "image/blue.png",
     data: null,
     
     get: function(){
-        util.update(this.url);
         if (this.data === null)
             this.data = util.request(this.url);
-        util.update(JSON.stringify(this.data));
-        return data;
+        return this.data;
     },
     
     displayCloseToStart: function(){
-        update("Close called");
         if (map.start.marker !== null){
             this.displayClose(map.start.pos, 4);
         }
@@ -24,22 +20,23 @@ var stops = {
         var closeStops = [];
         var pos;
         for (var i = 0; i < stops.length; i++){
-            pos = new google.maps.LatLng(stops[i].stop_lat, stops[i].stop_lon);
+            pos = new google.maps.LatLng(stops[i].stop_lat*1, stops[i].stop_lon*1);
             if (util.distance(center, pos) < radius){
-                closeStops.push(addMarker(stops[i], pos));
+                closeStops.push(this.addMarker(stops[i], pos));
             }
         }
+        map.add(closeStops);
     },
     
     addMarker: function(stop, pos){
         var newMarker = new google.maps.Marker({
             map: theMap,
             position: pos,
-            icon: this.icon,
-            cursor: stop.stop_id
+            icon: this.icon
         });
         return newMarker;
     }, 
+    
     something: function(){
         util.update("SSSSSSSSSSSSSSSSSSSSSS");
     }
