@@ -2,13 +2,16 @@
 <html>
     <head>
         <script src="map.js"></script>
+        <script src="user.js"></script>
+        <script src="util.js"></script>
+        <script src="data.js"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_9mrVl2c6FS59KEwhm5L55R08fcuF_V0&libraries=geometry,places&callback=map.init">
         </script>
         <title>CTFasTrak</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
+        <style> 
             #directions-panel {
               font-family: 'Roboto','sans-serif';
               line-height: 30px;
@@ -40,32 +43,35 @@
         <div id="map-div"></div>
         <div id="directions-panel"></div>
         <div id="user-input">
-            <table>
-                <tr> 
-                    <td>
-                        <input type=text name=start placeholder="start location" size=15> 
-                        <input type=button value="GO!" onClick="displayUserStartStopLoc()">
-                        <input type=text name=radius placeholder="radius" size=3>        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type=text name=end placeholder="end location" size=15>
-                        <input type = button value="Trip Info" onClick="calculateAndDisplayRoute()">
-                        <input type="button" value ="Clear" onClick="remove()">
-                    </td>
-                </tr>	
-                <tr>
-                    <td>
-                        <input type=button value="Close Places" onClick="displayClosePlacesToStart()">
-                        <input type=button value="Close Busses" onClick="displayCloseBussesToStart()">
-                        <input type=button value="Close Stops" onClick="displayCloseStopsToStart()">
-                    </td>
-                </tr>
-            </table>
+
+                <table>
+                    <tr> 
+                        <td>
+                            <input type=text name=start placeholder="start location" size=15> 
+                            <input type=button value="GO!" onClick="user.getStart()">
+                            <input type=text name=radius placeholder="radius" size=3>        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type=text name=end placeholder="end location" size=15>
+                            <input type = button value="Trip Info" onClick="calculateAndDisplayRoute()">
+                            <input type="button" value ="Clear" onClick="remove()">
+                        </td>
+                    </tr>	
+                    <tr>
+                        <td>
+                            <input type=button value="Close Places" onClick="displayClosePlacesToStart()">
+                            <input type=button value="Close Busses" onClick="displayCloseBussesToStart()">
+                            <input type=button value="Close Stops" onClick="displayCloseStopsToStart()">
+                        </td>
+                    </tr>
+                </table>
+
         </div>
-        <div id="toggle-button"><input type="button" value="toggle" onClick="toggleUI()"></div>
-        <div><input type="button" value="for testing" onClick="test()"></div>
+        <div id="toggle-button"><input type="button" value="toggle" onClick="map.toggleUI()"></div>
+        <div id="test-text"><input type="text"></div>
+        <div><input type="button" value="for testing" onClick="util.test()"></div>
         <p id="testing"></p>
     </body>
 </html>

@@ -1,22 +1,17 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-//var map;
-
-
-
+var theMap;
 var map = {
     center : null,
     visibles : [],
     visibleKey : 0,
     start : {
-        pos: null
+        marker: null,
+        pos: null,
+        address: null
     },
     end : {
-        pos: null
+        marker : null,
+        pos: null,
+        address: null
     },
     
     init : function(){
@@ -45,9 +40,10 @@ var map = {
         for (var i = 0; i < array.length; i++){
             newMarker = new google.maps.Marker({
                 map: theMap,
-                position: new google.maps.LatLng(array[i].lat, arra[i].lng),
+                position: new google.maps.LatLng(array[i].lat, array[i].lng),
             });
             this.visibles.push({
+                string: JSON.stringify(array[i]),
                 object: newMarker,
                 key: this.visibleKey
             });
@@ -61,12 +57,14 @@ var map = {
             this.visibles[0].object.setMap(null);
             this.visibles.shift();
         }
-    }    
+    },
+    
+    toggleUI: function(){
+        var ui = document.getElementById("user-input");
+        ui.style.display = ui.style.display === "none" ? "block" : "none";
+    }
 };
 
-function toggleUI(){
-    var ui = document.getElementById("user-input");
-    ui.style.display = ui.style.display === "none" ? "block" : "none";
-}
+
 
 
