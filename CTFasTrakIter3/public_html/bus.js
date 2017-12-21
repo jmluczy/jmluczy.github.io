@@ -54,11 +54,12 @@ var busses = {
     },
     
     displayStopsOfBus: function (busId, tripId, routeId){
-
+        var newStops = []; //to be added
         var tripData = data.realtime.get("tripupdates");
         //var currentTime = util.time();
         var currentTime = tripData.header.timestamp*1;
-        util.update(currentTime + "");
+        
+        
         tripData = tripData.entity;
 
         var i = 0;
@@ -74,12 +75,13 @@ var busses = {
         //skip stops bus as already stopped at
         while (1*trip[i].departure.time < currentTime) i++;
         
+        
         for (var j = i; j < trip.length; j++){
-            //get stop by ID
-            util.update("Stop ID: " + trip[j].stop_id + 
-                    "     TIME: " + trip[j].departure.time +
-                    "     Stop Sequence " + trip[j].stop_sequence);
+            var stop = stops.getByID(trip[j].stop_id);
+            var pos = new google.maps.LatLng(stop.stop_lat*1, stop.stop_lon*1);
+                newStops.push(stops.newMarker(stop, pos));
         }
+        map.add(newStops);
     }
 };
 

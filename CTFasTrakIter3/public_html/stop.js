@@ -44,7 +44,22 @@ var stops = {
         marker.addListener('click', function(){
             places.displayClose(pos, 3000);
         });
+    },
+    
+    getByID: function(id){
+        var stops = this.get();
+        var lo = 0;
+        var hi = stops.length-1;
+        var mid;
+        while (lo <= hi){
+            mid = Math.floor((lo+hi)/2);
+            if (id === stops[mid].stop_id)
+                return stops[mid];
+            if (id < stops[mid].stop_id)
+                hi = mid - 1;
+            else
+                lo = mid + 1;
+        }        
     }
-
 };    
 
