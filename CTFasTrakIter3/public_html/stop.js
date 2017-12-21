@@ -30,15 +30,21 @@ var stops = {
     },
     
     newMarker: function(stop, pos){
-        return new google.maps.Marker({
+        var newMarker = new google.maps.Marker({
             map: theMap,
             position: pos,
             icon: this.icon
         });
+        this.addListener(newMarker);
+        return newMarker;
     }, 
     
-    something: function(){
-        util.update("SSSSSSSSSSSSSSSSSSSSSS");
+    addListener: function(marker){
+        var pos = marker.position;
+        marker.addListener('click', function(){
+            places.displayClose(pos, 3000);
+        });
     }
+
 };    
 

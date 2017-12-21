@@ -1,7 +1,7 @@
 var places = {
     type: "restaurant",
     icon: "image/orange.png",
-    infoWindow: null,
+    //infowindow: null,
     service: null,
     
     
@@ -33,25 +33,22 @@ var places = {
     },
     
     newMarker: function(place){
+        //Place all data needed for listeners in the marker object
         var newMarker = new google.maps.Marker({
             map: theMap,
             position: place.geometry.location,
             icon: places.icon,
-            name: place.name
+            name: place.name  //for listener
         }); 
-        util.update(JSON.stringify(place) + "\n");
-        newMarker.addListener('click', function(){
-            infowindow = new google.maps.InfoWindow();
-            infowindow.setContent(place.name);
-            infowindow.open(theMap, this);
-        });
-        //google.maps.event.addListener(newMarker, 'click', onClick(place.name, newMarker.position));
+        this.addListener(newMarker);     
         return newMarker;
     },
     
-    onClick: function(marker){
-        var window = new google.maps.InfoWindow();
-        window.setContent(this.name);
-        window.open(theMap, this.position);
+    addListener: function (marker){
+        marker.addListener('click', function(){
+            var infoWindow = new google.maps.InfoWindow();
+            infoWindow.setContent(marker.name);
+            infoWindow.open(theMap, marker);
+        });
     }
 };

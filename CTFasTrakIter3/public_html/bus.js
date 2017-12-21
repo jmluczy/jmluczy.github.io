@@ -34,14 +34,22 @@ var busses = {
     },
     
     newMarker: function(bus, pos){
-        return new google.maps.Marker({
+        //add all necesarry data for listeners in marker object
+        var newMarker = new google.maps.Marker({
             map: theMap,
             position: pos,
-            icon: this.icon
+            icon: this.icon,
+            busdata: bus  //add all bus data to marker object
+        });
+        this.addListener(newMarker);
+        return newMarker;
+    },
+    
+    addListener: function(marker){
+        marker.addListener('click', function(){
+            util.update("Bus Listener Works");
         });
     }
-    
-    
 };
 
 
