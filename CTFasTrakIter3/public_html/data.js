@@ -5,8 +5,21 @@ var data = {
     },
     realtime:{
         urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/real-time-data-sample/",
-        urlPost: ".txt"
+        urlPost: ".txt",
+        get: function (file){
+            var types = ["alerts", "combined", "tripupdates", "vehiclepositions"];
+            var index = types.indexOf(file);
+            if (index === -1){
+                util.update("Invalid File Name: " + file);
+                return null;
+            }else{
+                var url = this.urlPre + file + this.urlPost;
+                return util.request(url);
+            }
+            
+        }
     }
+    
 };
 
 

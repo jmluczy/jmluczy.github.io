@@ -34,6 +34,7 @@ var util = {
     },
     
     test: function(){
-        this.update("No Test");
+        var trips = data.realtime.get("tripupdates");
+        this.update(JSON.stringify(trips));
     }
 };

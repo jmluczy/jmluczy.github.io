@@ -38,8 +38,10 @@ var busses = {
         var newMarker = new google.maps.Marker({
             map: theMap,
             position: pos,
-            icon: this.icon,
-            busdata: bus  //add all bus data to marker object
+            busId: bus.id,
+            tripId: bus.vehicle.trip.trip_id,
+            routeId: bus.vehicle.trip.route_id,
+            icon: this.icon
         });
         this.addListener(newMarker);
         return newMarker;
@@ -47,8 +49,37 @@ var busses = {
     
     addListener: function(marker){
         marker.addListener('click', function(){
-            util.update("Bus Listener Works");
+            busses.displayStopsOfBus(marker.busId, marker.tripId, marker.routeId);
         });
+    },
+    
+    displayStopsOfBus: function (busId, tripId, routeId){
+
+        var tripData = data.realtime.get("tripupdates");
+        //var currentTime = util.time();
+        var currentTime = tripData.header.timestamp*1;
+        util.update(currentTime + "");
+        tripData = tripData.entity;
+
+        var i = 0;
+        
+        //find trip that matches tripId argument
+        while(tripId !== tripData[i].id) i++;
+
+        //this is the trip that we are interested in
+        var trip = tripData[i].trip_update.stop_time_update;
+        
+        i = 0;
+
+        //skip stops bus as already stopped at
+        while (1*trip[i].departure.time < currentTime) i++;
+        
+        for (var j = i; j < trip.length; j++){
+            //get stop by ID
+            util.update("Stop ID: " + trip[j].stop_id + 
+                    "     TIME: " + trip[j].departure.time +
+                    "     Stop Sequence " + trip[j].stop_sequence);
+        }
     }
 };
 
@@ -117,8 +148,12 @@ var busses = {
           trip = tripData[i].trip_update.stop_time_update;
           i = 0;
           //skip the stops in this trip that the bus has already visited at
-          while (trip[i].departure === null) 
-            i++;
+          var currentTime = util.time();
+          util.update(currentTime + "");
+          while (trip[i].departure < currentTime) {
+              i++;
+              util.update("Departure time: " + trip[i].departure);
+          }
 
           //for each bus stop remaining, add a marker to display it
           for (var j = i; j < trip.length; j++){
