@@ -34,6 +34,6 @@ var util = {
     },
     
     test: function(){
-        busses.displayCloseToStart();
+        this.update("No Test");
     }
 };
