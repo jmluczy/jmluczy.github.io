@@ -1,5 +1,5 @@
 var theMap;
-
+var RADIUS = 5;
 var map = {
     center : {lat: 41.7,lng: -72.7},
     visibles : [],

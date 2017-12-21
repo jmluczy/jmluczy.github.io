@@ -33,10 +33,25 @@ var places = {
     },
     
     newMarker: function(place){
-        return new google.maps.Marker({
+        var newMarker = new google.maps.Marker({
             map: theMap,
             position: place.geometry.location,
-            icon: places.icon
-        });        
+            icon: places.icon,
+            name: place.name
+        }); 
+        util.update(JSON.stringify(place) + "\n");
+        newMarker.addListener('click', function(){
+            infowindow = new google.maps.InfoWindow();
+            infowindow.setContent(place.name);
+            infowindow.open(theMap, this);
+        });
+        //google.maps.event.addListener(newMarker, 'click', onClick(place.name, newMarker.position));
+        return newMarker;
+    },
+    
+    onClick: function(marker){
+        var window = new google.maps.InfoWindow();
+        window.setContent(this.name);
+        window.open(theMap, this.position);
     }
 };

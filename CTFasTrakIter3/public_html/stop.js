@@ -3,6 +3,7 @@ var stops = {
     icon: "image/blue.png",
     data: null,
     
+    
     get: function(){
         if (this.data === null)
             this.data = util.request(this.url);
