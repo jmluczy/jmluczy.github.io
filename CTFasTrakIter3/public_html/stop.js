@@ -10,7 +10,7 @@ var stops = {
     },
     
     displayCloseToStart: function(){
-        if (map.start.marker !== null){
+        if (map.start.pos !== null){
             this.displayClose(map.start.pos, 4);
         }
     },
@@ -22,19 +22,18 @@ var stops = {
         for (var i = 0; i < stops.length; i++){
             pos = new google.maps.LatLng(stops[i].stop_lat*1, stops[i].stop_lon*1);
             if (util.distance(center, pos) < radius){
-                closeStops.push(this.addMarker(stops[i], pos));
+                closeStops.push(this.newMarker(stops[i], pos));
             }
         }
         map.add(closeStops);
     },
     
-    addMarker: function(stop, pos){
-        var newMarker = new google.maps.Marker({
+    newMarker: function(stop, pos){
+        return new google.maps.Marker({
             map: theMap,
             position: pos,
             icon: this.icon
         });
-        return newMarker;
     }, 
     
     something: function(){

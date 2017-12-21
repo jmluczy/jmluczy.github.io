@@ -34,6 +34,6 @@ var util = {
     },
     
     test: function(){
-        this.update(this.distance(map.start.pos, map.end.pos));
+        busses.displayCloseToStart();
     }
 };

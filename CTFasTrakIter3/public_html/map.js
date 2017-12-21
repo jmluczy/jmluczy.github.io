@@ -41,10 +41,10 @@ var map = {
         for (var i = 0; i < array.length; i++){
             this.visibles.push({
                 marker: array[i],
-                key: this.visibleKey
+                key: map.visibleKey
             });
         }
-        this.visibleKey++;
+        map.visibleKey++;
     },
     
     remove : function(){

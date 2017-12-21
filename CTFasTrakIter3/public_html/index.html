@@ -7,6 +7,8 @@
         <script src="user.js"></script>
         <script src="util.js"></script>
         <script src="stop.js"></script>
+        <script src="place.js"></script>
+        <script src="bus.js"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_9mrVl2c6FS59KEwhm5L55R08fcuF_V0&libraries=geometry,places&callback=map.init">
         </script>
@@ -63,8 +65,8 @@
                     </tr>	
                     <tr>
                         <td>
-                            <input type=button value="Close Places" onClick="displayClosePlacesToStart()">
-                            <input type=button value="Close Busses" onClick="displayCloseBussesToStart()">
+                            <input type=button value="Close Places" onClick="places.displayCloseToStart()">
+                            <input type=button value="Close Busses" onClick="busses.displayCloseToStart()">
                             <input type=button value="Close Stops" onClick="stops.displayCloseToStart()">
                         </td>
                     </tr>
