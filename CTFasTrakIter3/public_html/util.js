@@ -34,7 +34,6 @@ var util = {
     },
     
     test: function(){
-        var trips = data.realtime.get("tripupdates");
-        this.update(JSON.stringify(trips));
+        directions.clear();
     }
 };

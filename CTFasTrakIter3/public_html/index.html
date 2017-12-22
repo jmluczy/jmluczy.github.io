@@ -9,12 +9,15 @@
         <script src="stop.js"></script>
         <script src="place.js"></script>
         <script src="bus.js"></script>
+        <script src="directions.js"></script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_9mrVl2c6FS59KEwhm5L55R08fcuF_V0&libraries=geometry,places&callback=map.init">
         </script>
+        
         <title>CTFasTrak</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <style> 
             #directions-panel {
               font-family: 'Roboto','sans-serif';
@@ -42,8 +45,10 @@
               width: 100%;
             }
         </style>
+        
     </head>
     <body>
+        
         <div id="map-div"></div>
         <div id="directions-panel"></div>
         <div id="user-input">
@@ -59,7 +64,7 @@
                     <tr>
                         <td>
                             <input type=text name=end placeholder="end location" size=15>
-                            <input type = button value="Trip Info" onClick="calculateAndDisplayRoute()">
+                            <input type = button value="Trip Info" onClick="directions.request()">
                             <input type="button" value ="Clear" onClick="map.remove()">
                         </td>
                     </tr>	
