@@ -14,7 +14,7 @@ var busses = {
     
     displayCloseToStart: function(){
         if (map.start.marker !== null)
-            this.displayClose(map.start.pos, 10);
+            this.displayClose(map.start.pos, user.radius());
     },
     
     displayClose: function(center, r){

@@ -1,4 +1,6 @@
 var user = {
+    DEFAULT_RADIUS: 4,
+    
     getLocations: function(){
         this.getStart();
         this.getEnd();
@@ -41,6 +43,24 @@ var user = {
         var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' 
             + address + '&components=state:CT&key=AIzaSyBezkqLyMpXAF9dBb4X5rZeQkyF8Y5_Te4';  
         return util.request(url);
+    },
+    
+    radius: function() { 
+      //reads radius from user input and verifies it is valid
+      //if invalid returns DEFAULT_RADIUS, else returns radius
+        var radius = document.input_form.radius.value;
+        if (isNaN(radius*1)){
+            document.input_form.radius.value = this.DEFAULT_RADIUS + "";
+            return this.DEFAULT_RADIUS;
+        }else{
+            radius = radius * 1; //coerce to number
+            if (radius <= 0){
+                document.input_form.radius.value = DEFAULT_RADIUS + "";
+                return this.DEFAULT_RADIUS;
+            }else{
+                return radius;
+            }
+        }
     }
 };
 

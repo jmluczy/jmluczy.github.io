@@ -1,4 +1,6 @@
 var util = {
+    defaultRadius: 5,
+    
     request : function(url){
         var req = new XMLHttpRequest();
         req.open('GET', url, false);
@@ -33,7 +35,14 @@ var util = {
         return dist;       
     },
     
+    radius: function(){
+        var r = document.input_form.radius.value;
+        
+            
+    },
+    
     test: function(){
-        directions.clear();
+        this.update((document.input_form.radius.value*1) === "NaN");
+        //directions.clear();
     }
 };

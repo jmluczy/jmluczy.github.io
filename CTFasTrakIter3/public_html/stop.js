@@ -12,7 +12,7 @@ var stops = {
     
     displayCloseToStart: function(){
         if (map.start.pos !== null){
-            this.displayClose(map.start.pos, 4);
+            this.displayClose(map.start.pos, user.radius());
         }
     },
     
