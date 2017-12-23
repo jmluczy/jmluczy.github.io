@@ -31,14 +31,9 @@ var directions = {
                 origin: map.start.pos,
                 destination: map.end.pos,
                 travelMode: this.travelMode
-            }, this.display
-            /*function(response, status){
-                if (status === 'OK')
-                    directions.renderer.setDirections(response);
-                else
-                    window.alert('Directions request failed due to ' + status);
-            }*/); 
+            }, this.display); 
         }
+        
     },
     display: function(response, status){
         if (status === 'OK')
