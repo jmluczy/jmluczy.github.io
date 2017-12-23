@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <script src="map.js"></script>
+        <script src="data.js"></script>
+        <script src="user.js"></script>
+        <script src="util.js"></script>
+        <script src="stop.js"></script>
+        <script src="place.js"></script>
+        <script src="bus.js"></script>
+        <script src="directions.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_9mrVl2c6FS59KEwhm5L55R08fcuF_V0&libraries=geometry,places&callback=map.init">
+        </script>
+        
+        <title>CTFasTrak</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style> 
+            #directions-panel {
+              font-family: 'Roboto','sans-serif';
+              line-height: 30px;
+              padding-left: 0px;
+            }
+            #directions-panel select, #directions-panel input {
+              font-size: 15px;
+            }
+            #directions-panel select {
+              width: 380px;
+            }
+            #directions-panel i {
+              font-size: 12px;
+            }
+            #directions-panel {
+              height: 600px;
+              float: left;
+              width: 380px;
+              overflow: auto;
+            }
+            #map-div {
+              height: 640px;
+              float: left;
+              width: 100%;
+            }
+        </style>
+        
+    </head>
+    <body>
+        
+        <div id="map-div"></div>
+        <div id="directions-panel"></div>
+        <div id="user-input">
+            <form name="input_form">
+                <table>
+                    <tr> 
+                        <td>
+                            <input type=text name=start placeholder="start location" size=15> 
+                            <input type=button value="GO!" onClick="user.getLocations()">
+                            <input type=text name=radius placeholder="radius" size=3>        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type=text name=end placeholder="end location" size=15>
+                            <input type = button value="Trip Info" onClick="directions.request()">
+                            <input type="button" value ="Clear" onClick="map.remove()">
+                        </td>
+                    </tr>	
+                    <tr>
+                        <td>
+                            <input type=button value="Close Places" onClick="places.displayCloseToStart()">
+                            <input type=button value="Close Busses" onClick="busses.displayCloseToStart()">
+                            <input type=button value="Close Stops"  onClick="stops.displayCloseToStart()">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="toggle-button"><input type="button" value="toggle" onClick="map.toggleUI()"></div>
+        <div id="test-text"><input type="text"></div>
+        <div><input type="button" value="for testing" onClick="util.test()"></div>
+        <p id="testing"></p>
+    </body>
+</html>
