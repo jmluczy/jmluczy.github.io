@@ -25,6 +25,7 @@ var map = {
             mapTypeId: 'terrain'
         });
         this.initControls();
+        this.alert();
     },
     
     initControls : function(){
@@ -58,5 +59,9 @@ var map = {
     toggleUI: function(){
         var ui = document.getElementById("user-input");
         ui.style.display = ui.style.display === "none" ? "block" : "none";
+    },
+    
+    alert: function(){
+        window.alert("Actual realtime data feed is currently inaccessible.  This application is currently using an old version of the realtime data (not up to date).  Trip information / directions are accurate.");
     }
 };
