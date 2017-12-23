@@ -59,7 +59,6 @@ var busses = {
         //var currentTime = util.time();
         var currentTime = tripData.header.timestamp*1;
         
-        
         tripData = tripData.entity;
 
         var i = 0;
@@ -74,7 +73,6 @@ var busses = {
 
         //skip stops bus as already stopped at
         while (1*trip[i].departure.time < currentTime) i++;
-        
         
         for (var j = i; j < trip.length; j++){
             var stop = stops.getByID(trip[j].stop_id);

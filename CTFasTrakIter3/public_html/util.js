@@ -42,7 +42,9 @@ var util = {
     },
     
     test: function(){
-        this.update((document.input_form.radius.value*1) === "NaN");
+        var val = document.input_form.radius.value;
+        this.update((val*1) === "NaN");
+        this.udpate(val + "");
         //directions.clear();
     }
 };

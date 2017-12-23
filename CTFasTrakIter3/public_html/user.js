@@ -1,5 +1,7 @@
 var user = {
     DEFAULT_RADIUS: 4,
+    endIcon: "image/red.png",
+    startIcon: "image/green.png",
     
     getLocations: function(){
         this.getStart();
@@ -17,7 +19,7 @@ var user = {
             map.start.marker = new google.maps.Marker({
                 map: theMap,
                 position: map.start.pos,
-                icon: "image/green.png"
+                icon: this.startIcon
             });
         }
     },
@@ -33,7 +35,7 @@ var user = {
             map.end.marker = new google.maps.Marker({
                 map: theMap,
                 position: map.end.pos,
-                icon: "image/red.png"
+                icon: this.endIcon
             });
         }
     },
@@ -48,19 +50,12 @@ var user = {
     radius: function() { 
       //reads radius from user input and verifies it is valid
       //if invalid returns DEFAULT_RADIUS, else returns radius
-        var radius = document.input_form.radius.value;
-        if (isNaN(radius*1)){
-            document.input_form.radius.value = this.DEFAULT_RADIUS + "";
-            return this.DEFAULT_RADIUS;
-        }else{
-            radius = radius * 1; //coerce to number
-            if (radius <= 0){
-                document.input_form.radius.value = DEFAULT_RADIUS + "";
-                return this.DEFAULT_RADIUS;
-            }else{
-                return radius;
-            }
-        }
+        var radius = Number(document.input_form.radius.value);
+        if (isNaN(radius) || radius < 0.1)
+            radius = this.DEFAULT_RADIUS;
+       
+        document.input_form.radius.value = radius;
+        return radius;        
     }
 };
 
