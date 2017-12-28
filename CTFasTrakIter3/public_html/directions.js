@@ -42,6 +42,10 @@ var directions = {
             window.alert('Directions request failed due to ' + status);        
     },
     
+    pushMap: function(){
+       //push something on map.visibles so that ...
+    },
+    
     clear: function(){
         this.renderer.setMap(null);
         this.renderer.setPanel(null);

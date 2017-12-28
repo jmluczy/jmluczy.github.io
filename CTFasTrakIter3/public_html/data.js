@@ -1,22 +1,37 @@
 var data = {
     static: {
         urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/static-data/",
-        urlPost: "_json.txt"
-    },
-    realtime:{
-        urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/real-time-data-sample/",
-        urlPost: ".txt",
-        get: function (file){
-            var types = ["alerts", "combined", "tripupdates", "vehiclepositions"];
+        urlPost: "_json.txt",
+        get: function(file){
+            var types = ["routes", "shapes", "stops", "trips"];
             var index = types.indexOf(file);
             if (index === -1){
-                util.update("Invalid File Name: " + file);
+                util.update("Invalid Static File Name: " + file);
                 return null;
-            }else{
+            }
+            else{
                 var url = this.urlPre + file + this.urlPost;
                 return util.request(url);
             }
-            
+        }
+    },
+    realtime:{
+        //urlPre: "http://65.213.12.244/realtimefeed/",
+        //urlPost: ".json",
+        urlPre: "https://raw.githubusercontent.com/jmluczy/CTFasTrakCS530/real-time-data-sample/",
+        urlPost: ".txt",
+        get: function (file){
+            var validTypes = ["alerts", "combined", "tripupdates", "vehiclepositions"];
+            var names = ["alert/alerts", "externalfeed/trapezerealtimefeed", "tripupdate/tripupdates","vehicle/vehiclepositions"];
+            var index = validTypes.indexOf(file);
+            if (index === -1){
+                util.update("Invalid Realtime File Name: " + file);
+                return null;
+            }else{
+                //var url = this.urlPre + names[index] + this.urlPost;
+                var url = this.urlPre + validTypes[index] + this.urlPost;
+                return util.request(url);
+            }            
         }
     }
     

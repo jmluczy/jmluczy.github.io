@@ -42,9 +42,7 @@ var util = {
     },
     
     test: function(){
-        var val = document.input_form.radius.value;
-        this.update((val*1) === "NaN");
-        this.udpate(val + "");
-        //directions.clear();
+        var text = data.realtime.get("vehiclepositions");
+        this.update(text);
     }
 };
